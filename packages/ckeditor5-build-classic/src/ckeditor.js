@@ -28,10 +28,98 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
+import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
+
 
 export default class ClassicEditor extends ClassicEditorBase {}
+
+const customColorPalette = [
+    {
+        color: 'hsl(4, 90%, 58%)',
+        label: 'Red'
+    },
+    {
+        color: 'hsl(340, 82%, 52%)',
+        label: 'Pink'
+    },
+    {
+        color: 'hsl(291, 64%, 42%)',
+        label: 'Purple'
+    },
+    {
+        color: 'hsl(262, 52%, 47%)',
+        label: 'Deep Purple'
+    },
+    {
+        color: 'hsl(231, 48%, 48%)',
+        label: 'Indigo'
+    },
+    {
+        color: 'hsl(207, 90%, 54%)',
+        label: 'Blue'
+    },
+	{
+        color: 'rgb(2, 166, 242)',
+        label: 'Light Blue'
+    },
+	{
+        color: 'rgb(0, 189, 214)',
+        label: 'Cyan'
+    },
+	{
+        color: 'rgb(0, 148, 133)',
+        label: 'Teal'
+    },
+	{
+        color: 'rgb(76, 174, 79)',
+        label: 'Green'
+    },
+	{
+        color: 'rgb(139, 195, 75)',
+        label: 'Light Green'
+    },
+	{
+        color: 'rgb(203, 220, 56)',
+        label: 'Lime'
+    },
+	{
+        color: 'rgb(253, 216, 53)',
+        label: 'Yellow'
+    },
+	{
+        color: 'rgb(255, 193, 5)',
+        label: 'Amber'
+    },
+	{
+        color: 'rgb(255, 153, 0)',
+        label: 'Orange'
+    },
+	{
+        color: 'rgb(244, 81, 31)',
+        label: 'Deep Orange'
+    },
+	{
+        color: 'rgb(108, 76, 65)',
+        label: 'Brown'
+    },
+	{
+        color: 'rgb(158, 158, 158)',
+        label: 'Grey'
+    },
+	{
+        color: 'rgb(96, 124, 138)',
+        label: 'Blue Grey'
+    },
+	{
+        color: 'rgb(255, 255, 255)',
+        label: 'White'
+    },
+];
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
@@ -58,7 +146,11 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TableProperties,
+	TableCellProperties,
+	TextTransformation,
+	Font,
+	FontFamily
 ];
 
 // Editor configuration.
@@ -81,7 +173,13 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'|',
+			'fontSize',
+			'fontFamily',
+			'fontColor',
+			'fontBackgroundColor',
+			'fontFamily'
 		]
 	},
 	image: {
@@ -98,8 +196,18 @@ ClassicEditor.defaultConfig = {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
-			'mergeTableCells'
-		]
+			'mergeTableCells',
+			'tableProperties',
+			'tableCellProperties'
+		],
+		tableProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
+		},
+		tableCellProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
+		}
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
